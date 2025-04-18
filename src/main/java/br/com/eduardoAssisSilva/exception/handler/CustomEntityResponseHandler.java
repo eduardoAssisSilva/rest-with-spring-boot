@@ -1,6 +1,7 @@
 package br.com.eduardoAssisSilva.exception.handler;
 
 import br.com.eduardoAssisSilva.exception.ExceptionResponse;
+import br.com.eduardoAssisSilva.exception.ResourceNotFoundException;
 import br.com.eduardoAssisSilva.exception.UnsupportedMathOperationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,11 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(UnsupportedMathOperationException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request){
         return buildResponse(ex, request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleNotFoundException(Exception ex, WebRequest request){
+        return buildResponse(ex, request, HttpStatus.NOT_FOUND);
     }
 
 
