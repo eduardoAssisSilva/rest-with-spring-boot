@@ -4,7 +4,6 @@ import br.com.eduardoAssisSilva.model.Person;
 import br.com.eduardoAssisSilva.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
