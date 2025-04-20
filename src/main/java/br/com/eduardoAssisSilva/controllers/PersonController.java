@@ -1,6 +1,6 @@
 package br.com.eduardoAssisSilva.controllers;
 
-import br.com.eduardoAssisSilva.model.Person;
+import br.com.eduardoAssisSilva.data.dto.PersonDTO;
 import br.com.eduardoAssisSilva.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,26 +17,26 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Person> findById(@PathVariable("id") Long id) {
-        Person person = personService.findById(id);
+    public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) {
+        PersonDTO person = personService.findById(id);
         return ResponseEntity.ok(person);
     }
 
     @GetMapping
-    public ResponseEntity<List<Person>> findAll() {
-        List<Person> people = personService.findAll();
+    public ResponseEntity<List<PersonDTO>> findAll() {
+        List<PersonDTO> people = personService.findAll();
         return ResponseEntity.ok(people);
     }
 
     @PostMapping
-    public ResponseEntity<Person> create(@RequestBody Person person){
-        Person created = personService.create(person);
+    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
+        PersonDTO created = personService.create(person);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping
-    public ResponseEntity<Person> update(@RequestBody Person person){
-        Person updated = personService.update(person);
+    public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person){
+        PersonDTO updated = personService.update(person);
         return ResponseEntity.ok(updated);
     }
 
