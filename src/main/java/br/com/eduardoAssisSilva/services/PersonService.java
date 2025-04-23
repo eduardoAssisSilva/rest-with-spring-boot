@@ -1,6 +1,7 @@
 package br.com.eduardoAssisSilva.services;
 
-import br.com.eduardoAssisSilva.data.dto.PersonDTO;
+import br.com.eduardoAssisSilva.data.dto.v1.PersonDTO;
+import br.com.eduardoAssisSilva.data.dto.v2.PersonDTOV2;
 import br.com.eduardoAssisSilva.exception.ResourceNotFoundException;
 import static br.com.eduardoAssisSilva.mapper.ObjectMapper.parseListObjects;
 import static br.com.eduardoAssisSilva.mapper.ObjectMapper.parseObject;
@@ -23,34 +24,49 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public List<PersonDTO> findAll(){
+    public <D> List<D> findAll(Class<D> dtoClass) {
         logger.info("Finding all persons!");
-        return parseListObjects(personRepository.findAll(), PersonDTO.class);
+        return parseListObjects(personRepository.findAll(), dtoClass);
     }
 
-    public PersonDTO findById(Long id){
+    public <D> D findById(Long id, Class<D> dtoClass) {
         logger.info("Finding one Person!");
 
-        var entity =  personRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("No record found for this ID!"));
-        return parseObject(entity, PersonDTO.class);
+        var entity = personRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No record found for this ID!"));
+
+        return parseObject(entity, dtoClass);
     }
 
-    public PersonDTO create(PersonDTO person) {
+    public <D> D create(D person, Class<D> dtoClass) {
         logger.info("Creating one Person!");
 
         var entity = parseObject(person, Person.class);
+        return parseObject(personRepository.save(entity), dtoClass);
+    }
+
+    public PersonDTO update(PersonDTO personDTO) {
+        logger.info("Updating one Person!");
+        Person entity = personRepository.findById(personDTO.getId()).orElseThrow(()-> new ResourceNotFoundException("No record found for this ID!"));
+        entity.setFirstName(personDTO.getFirstName());
+        entity.setLastName(personDTO.getLastName());
+        entity.setAddress(personDTO.getAddress());
+        entity.setGender(personDTO.getGender());
+
         return parseObject(personRepository.save(entity), PersonDTO.class);
     }
 
-    public PersonDTO update(PersonDTO person) {
+    public PersonDTOV2 update(PersonDTOV2 personDTO) {
         logger.info("Updating one Person!");
-        Person entity = personRepository.findById(person.getId()).orElseThrow(()-> new ResourceNotFoundException("No record found for this ID!"));
-        entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
-        entity.setAddress(person.getAddress());
-        entity.setGender(person.getGender());
 
-        return parseObject(personRepository.save(entity), PersonDTO.class);
+        Person entity = personRepository.findById(personDTO.getId()).orElseThrow(()-> new ResourceNotFoundException("No record found for this ID!"));
+        entity.setFirstName(personDTO.getFirstName());
+        entity.setLastName(personDTO.getLastName());
+        entity.setBirthday(personDTO.getBirthday());
+        entity.setAddress(personDTO.getAddress());
+        entity.setGender(personDTO.getGender());
+
+        return parseObject(personRepository.save(entity), PersonDTOV2.class);
     }
 
     public void delete (Long id) {
