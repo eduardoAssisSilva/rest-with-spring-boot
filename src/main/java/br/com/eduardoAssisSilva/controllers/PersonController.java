@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person")
 public class PersonController {
 
     @Autowired
     private PersonService personService;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/v1/{id}")
     public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) {
         PersonDTO person = personService.findById(id, PersonDTO.class);
         return ResponseEntity.ok(person);
@@ -29,7 +29,7 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping
+    @GetMapping(value = "/v1")
     public ResponseEntity<List<PersonDTO>> findAll() {
         List<PersonDTO> people = personService.findAll(PersonDTO.class);
         return ResponseEntity.ok(people);
@@ -40,7 +40,7 @@ public class PersonController {
         return ResponseEntity.ok(people);
     }
 
-    @PostMapping
+    @PostMapping(value ="/v1")
     public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
         PersonDTO created = personService.create(person, PersonDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -52,7 +52,7 @@ public class PersonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PutMapping
+    @PutMapping(value = "/v1")
     public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person){
         PersonDTO updated = personService.update(person);
         return ResponseEntity.ok(updated);
@@ -64,7 +64,7 @@ public class PersonController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/v1/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id){
         personService.delete(id);
         return ResponseEntity.noContent().build();
