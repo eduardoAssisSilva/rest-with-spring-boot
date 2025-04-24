@@ -1,0 +1,16 @@
+INSERT INTO `person` (`id`, `address`, `first_name`, `gender`, `last_name`, `birthday`) VALUES
+	(11, 'Vitória - Espírito Santo - Brasil', 'Lucas', 'Male', 'Almeida', '1995-02-14'),
+	(12, 'Vila Velha - Espírito Santo - Brasil', 'Mariana', 'Female', 'Costa', '1990-08-30'),
+	(13, 'Serra - Espírito Santo - Brasil', 'Rafael', 'Male', 'Souza', NULL),
+	(14, 'Cariacica - Espírito Santo - Brasil', 'Ana', 'Female', 'Rocha', '2000-05-21'),
+	(15, 'Vitória - Espírito Santo - Brasil', 'João', 'Male', 'Pereira', '1988-12-03'),
+	(16, 'Serra - Espírito Santo - Brasil', 'Camila', 'Female', 'Fernandes', NULL),
+	(17, 'Vila Velha - Espírito Santo - Brasil', 'Paulo', 'Male', 'Mendes', '1992-11-15'),
+	(18, 'Cariacica - Espírito Santo - Brasil', 'Larissa', 'Female', 'Oliveira', NULL),
+	(19, 'Vitória - Espírito Santo - Brasil', 'Carlos', 'Male', 'Gomes', '1999-03-08'),
+	(20, 'Serra - Espírito Santo - Brasil', 'Beatriz', 'Female', 'Martins', '1996-07-27'),
+	(21, 'Vila Velha - Espírito Santo - Brasil', 'André', 'Male', 'Ramos', NULL),
+	(22, 'Cariacica - Espírito Santo - Brasil', 'Juliana', 'Female', 'Lima', '1991-09-10'),
+	(23, 'Serra - Espírito Santo - Brasil', 'Fábio', 'Male', 'Teixeira', '1987-01-18'),
+	(24, 'Vitória - Espírito Santo - Brasil', 'Gabriela', 'Female', 'Barros', NULL),
+	(25, 'Vila Velha - Espírito Santo - Brasil', 'Bruno', 'Male', 'Silveira', '1994-10-05');
