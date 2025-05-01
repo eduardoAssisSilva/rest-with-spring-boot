@@ -65,6 +65,8 @@ public class PersonService {
         entity.setBirthday(personDTO.getBirthday());
         entity.setAddress(personDTO.getAddress());
         entity.setGender(personDTO.getGender());
+        entity.setBirthday(personDTO.getBirthday());
+        entity.setPhoneNumber(personDTO.getPhoneNumber());
 
         return parseObject(personRepository.save(entity), PersonDTOV2.class);
     }

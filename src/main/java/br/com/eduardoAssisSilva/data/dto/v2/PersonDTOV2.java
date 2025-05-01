@@ -1,17 +1,30 @@
 package br.com.eduardoAssisSilva.data.dto.v2;
 
+import br.com.eduardoAssisSilva.serializer.GenderSerializer;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@JsonFilter("PesonFilter")
 public class PersonDTOV2 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    @JsonProperty("first_name")
     private String firstName;
+
+    @JsonProperty("last_name")
     private String lastName;
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private String phoneNumber;
+    @JsonFormat(pattern="dd/MM/yyy")
     private LocalDate birthday;
+    @JsonIgnore
     private String address;
+    @JsonSerialize(using = GenderSerializer.class)
     private String gender;
 
     public PersonDTOV2() {}
@@ -65,15 +78,24 @@ public class PersonDTOV2 implements Serializable {
         this.birthday = birthday;
     }
 
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PersonDTOV2 that)) return false;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getBirthday(), that.getBirthday()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getPhoneNumber(), that.getPhoneNumber()) && Objects.equals(getBirthday(), that.getBirthday()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getBirthday(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getPhoneNumber(), getBirthday(), getAddress(), getGender());
     }
 }
