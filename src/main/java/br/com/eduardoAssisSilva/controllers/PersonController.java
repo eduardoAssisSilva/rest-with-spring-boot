@@ -5,6 +5,7 @@ import br.com.eduardoAssisSilva.data.dto.v2.PersonDTOV2;
 import br.com.eduardoAssisSilva.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @GetMapping(value = "/v1/{id}")
+    @GetMapping(value = "/v1/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) {
         PersonDTO person = personService.findById(id, PersonDTO.class);
         return ResponseEntity.ok(person);
@@ -29,18 +30,18 @@ public class PersonController {
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping(value = "/v1")
+    @GetMapping(value = "/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<List<PersonDTO>> findAll() {
         List<PersonDTO> people = personService.findAll(PersonDTO.class);
         return ResponseEntity.ok(people);
     }
-    @GetMapping(value = "/v2")
+    @GetMapping(value = "/v2", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<List<PersonDTOV2>> findAllV2() {
         List<PersonDTOV2> people = personService.findAll(PersonDTOV2.class);
         return ResponseEntity.ok(people);
     }
 
-    @PostMapping(value ="/v1")
+    @PostMapping(value ="/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
         PersonDTO created = personService.create(person, PersonDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -52,7 +53,7 @@ public class PersonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PutMapping(value = "/v1")
+    @PutMapping(value = "/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person){
         PersonDTO updated = personService.update(person);
         return ResponseEntity.ok(updated);
@@ -64,7 +65,7 @@ public class PersonController {
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping(value = "/v1/{id}")
+    @DeleteMapping(value = "/v1/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     public ResponseEntity<?> delete(@PathVariable("id") Long id){
         personService.delete(id);
         return ResponseEntity.noContent().build();
