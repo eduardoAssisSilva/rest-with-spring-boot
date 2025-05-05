@@ -1,16 +1,8 @@
-INSERT INTO `person` (`id`, `address`, `first_name`, `gender`, `last_name`, `birthday`, `phone_number`) VALUES
-(1, 'Vitória - Espírito Santo - Brasil', 'Lucas', 'Male', 'Almeida', '1995-02-14', NULL),
-(2, 'Vila Velha - Espírito Santo - Brasil', 'Mariana', 'Female', 'Costa', '1990-08-30', '+55 27 99871-5413'),
-(3, 'Serra - Espírito Santo - Brasil', 'Rafael', 'Male', 'Souza', NULL, NULL),
-(4, 'Cariacica - Espírito Santo - Brasil', 'Ana', 'Female', 'Rocha', '2000-05-21', '+55 27 99872-1123'),
-(5, 'Vitória - Espírito Santo - Brasil', 'João', 'Male', 'Pereira', '1988-12-03', '+55 27 99873-3344'),
-(6, 'Serra - Espírito Santo - Brasil', 'Camila', 'Female', 'Fernandes', NULL, NULL),
-(7, 'Vila Velha - Espírito Santo - Brasil', 'Paulo', 'Male', 'Mendes', '1992-11-15', '+55 27 99874-5566'),
-(8, 'Cariacica - Espírito Santo - Brasil', 'Larissa', 'Female', 'Oliveira', NULL, NULL),
-(9, 'Vitória - Espírito Santo - Brasil', 'Carlos', 'Male', 'Gomes', '1999-03-08', '+55 27 99875-7788'),
-(10, 'Serra - Espírito Santo - Brasil', 'Beatriz', 'Female', 'Martins', '1996-07-27', '+55 27 99876-8899'),
-(11, 'Vila Velha - Espírito Santo - Brasil', 'André', 'Male', 'Ramos', NULL, '+55 27 99877-9900'),
-(12, 'Cariacica - Espírito Santo - Brasil', 'Juliana', 'Female', 'Lima', '1991-09-10', '+55 27 99878-1010'),
-(13, 'Serra - Espírito Santo - Brasil', 'Fábio', 'Male', 'Teixeira', '1987-01-18', '+55 27 99879-1212'),
-(14, 'Vitória - Espírito Santo - Brasil', 'Gabriela', 'Female', 'Barros', NULL, '+55 27 99880-1313'),
-(15, 'Vila Velha - Espírito Santo - Brasil', 'Bruno', 'Male', 'Silveira', '1994-10-05', '+55 27 99881-1414');
+INSERT INTO `person` (`id`, `address`, `first_name`, `gender`, `last_name`) VALUES
+	(1, 'São Paulo', 'Ayrton', 'Male', 'Senna'),
+	(2, 'Anchiano - Italy', 'Leonardo', 'Male', 'da Vinci'),
+	(4, 'Porbandar - India', 'Indira', 'Female', 'Gandhi'),
+	(5, 'Porbandar - India', 'Mahatma', 'Male', 'Gandhi'),
+	(7, 'Kentucky - US', 'Muhammad', 'Male', 'Ali'),
+	(9, 'Mvezo – South Africa', 'Nelson', 'Male', 'Mvezo'),
+	(10, 'Smiljan - Croácia', 'Nikola', 'Male', 'Tesla');

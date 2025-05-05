@@ -17,14 +17,13 @@ public class Person implements Serializable {
 
     @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
+
     @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
-    @Column(name = "phone_number", nullable = true, length = 20)
-    private String phoneNumber;
-    @Column(name = "birthday", nullable = true, length = 80)
-    private LocalDate birthday;
+
     @Column(nullable = false, length = 100)
     private String address;
+
     @Column(nullable = false, length = 6)
     private String gender;
 
@@ -55,14 +54,6 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -79,23 +70,15 @@ public class Person implements Serializable {
         this.gender = gender;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Person person)) return false;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getBirthday(), person.getBirthday()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender()) && Objects.equals(getPhoneNumber(), person.getPhoneNumber());
+        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getBirthday(), getAddress(), getGender(), getPhoneNumber());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
     }
 }

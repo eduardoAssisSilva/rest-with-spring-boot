@@ -1,7 +1,6 @@
 package br.com.eduardoAssisSilva.controllers;
 
 import br.com.eduardoAssisSilva.data.dto.v1.PersonDTO;
-import br.com.eduardoAssisSilva.data.dto.v2.PersonDTOV2;
 import br.com.eduardoAssisSilva.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,30 +19,30 @@ public class PersonController {
 
 
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTOV2> findById(@PathVariable("id") Long id) {
-        PersonDTOV2 person = personService.findById(id);
+    public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) {
+        PersonDTO person = personService.findById(id);
         return ResponseEntity.ok(person);
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<List<PersonDTOV2>> findAll() {
-        List<PersonDTOV2> people = personService.findAll();
+    public ResponseEntity<List<PersonDTO>> findAll() {
+        List<PersonDTO> people = personService.findAll();
         return ResponseEntity.ok(people);
     }
 
     @PostMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTOV2> create(@RequestBody PersonDTOV2 person) {
-        PersonDTOV2 created = personService.create(person);
+    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person) {
+        PersonDTO created = personService.create(person);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping(
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTOV2> update(@RequestBody PersonDTOV2 person) {
-        PersonDTOV2 updated = personService.update(person);
+    public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person) {
+        PersonDTO updated = personService.update(person);
         return ResponseEntity.ok(updated);
     }
 
