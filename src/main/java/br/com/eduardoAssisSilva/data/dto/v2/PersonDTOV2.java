@@ -3,13 +3,13 @@ package br.com.eduardoAssisSilva.data.dto.v2;
 import br.com.eduardoAssisSilva.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@JsonFilter("PesonFilter")
-public class PersonDTOV2 implements Serializable {
+public class PersonDTOV2 extends RepresentationModel<PersonDTOV2> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -22,7 +22,6 @@ public class PersonDTOV2 implements Serializable {
     private String phoneNumber;
     @JsonFormat(pattern="dd/MM/yyy")
     private LocalDate birthday;
-    @JsonIgnore
     private String address;
     @JsonSerialize(using = GenderSerializer.class)
     private String gender;

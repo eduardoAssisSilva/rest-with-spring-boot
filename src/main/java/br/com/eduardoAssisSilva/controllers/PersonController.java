@@ -12,61 +12,43 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
 
     @Autowired
     private PersonService personService;
 
-    @GetMapping(value = "/v1/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTO> findById(@PathVariable("id") Long id) {
-        PersonDTO person = personService.findById(id, PersonDTO.class);
+
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    public ResponseEntity<PersonDTOV2> findById(@PathVariable("id") Long id) {
+        PersonDTOV2 person = personService.findById(id);
         return ResponseEntity.ok(person);
     }
 
-    @GetMapping(value = "/v2/{id}")
-    public ResponseEntity<PersonDTOV2> findByIdV2(@PathVariable("id") Long id) {
-        PersonDTOV2 person = personService.findById(id, PersonDTOV2.class);
-        return ResponseEntity.ok(person);
-    }
-
-    @GetMapping(value = "/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<List<PersonDTO>> findAll() {
-        List<PersonDTO> people = personService.findAll(PersonDTO.class);
-        return ResponseEntity.ok(people);
-    }
-    @GetMapping(value = "/v2", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<List<PersonDTOV2>> findAllV2() {
-        List<PersonDTOV2> people = personService.findAll(PersonDTOV2.class);
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    public ResponseEntity<List<PersonDTOV2>> findAll() {
+        List<PersonDTOV2> people = personService.findAll();
         return ResponseEntity.ok(people);
     }
 
-    @PostMapping(value ="/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person){
-        PersonDTO created = personService.create(person, PersonDTO.class);
+    @PostMapping(
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    public ResponseEntity<PersonDTOV2> create(@RequestBody PersonDTOV2 person) {
+        PersonDTOV2 created = personService.create(person);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
-    @PostMapping(value ="/v2")
-    public ResponseEntity<PersonDTOV2> create(@RequestBody PersonDTOV2 person){
-        PersonDTOV2 created = personService.create(person, PersonDTOV2.class);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
-    }
-
-    @PutMapping(value = "/v1", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTO> update(@RequestBody PersonDTO person){
-        PersonDTO updated = personService.update(person);
-        return ResponseEntity.ok(updated);
-    }
-
-    @PutMapping(value ="/v2")
-    public ResponseEntity<PersonDTOV2> update(@RequestBody PersonDTOV2 person){
+    @PutMapping(
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    public ResponseEntity<PersonDTOV2> update(@RequestBody PersonDTOV2 person) {
         PersonDTOV2 updated = personService.update(person);
         return ResponseEntity.ok(updated);
     }
 
-    @DeleteMapping(value = "/v1/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<?> delete(@PathVariable("id") Long id){
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         personService.delete(id);
         return ResponseEntity.noContent().build();
     }
